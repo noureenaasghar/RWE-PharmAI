@@ -67,12 +67,13 @@ with tab2:
 max_completion_tokens=8192
                 )
 
-                st.markdown(response.choices[0].message.content)
+                               st.markdown(response.choices[0].message.content)
+
                 if response.choices[0].finish_reason == "length":
-    st.warning(
-        "The response reached its output limit. "
-        "Please generate the review again."
-    )
+                    st.warning(
+                        "The response reached its output limit. "
+                        "Please generate the review again."
+                    )
             except Exception as e:
                 st.error(f"AI review error: {e}")
 
