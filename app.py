@@ -100,7 +100,8 @@ with tab3:
                             "content": json.dumps(proposal_data)
                         }
                     ],
-                    temperature=0.2
+                    temperature=0.2,
+max_completion_tokens=8192
                 )
 
                 st.markdown(response.choices[0].message.content)
