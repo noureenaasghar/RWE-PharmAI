@@ -73,7 +73,6 @@ max_completion_tokens=8192
         "The response reached its output limit. "
         "Please generate the review again."
     )
-
             except Exception as e:
                 st.error(f"AI review error: {e}")
 
