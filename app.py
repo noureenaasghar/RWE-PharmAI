@@ -39,74 +39,73 @@ with tab2:
     st.header("AI Research Review")
 
     if st.button("Generate AI Review"):
-        if not api_key:
-            st.warning("Please enter your Groq API key.")
-        else:
-            try:
-                client = Groq(api_key=api_key)
+        try:
+            client = Groq(api_key=api_key)
 
-                 response = client.chat.completions.create(
-                    model="openai/gpt-oss-20b",
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": (
-                                "You are a research methodology reviewer. "
-                                "Evaluate the proposal critically. "
-                                "Identify strengths, limitations and "
-                                "practical recommendations. Do not invent "
-                                "evidence or claim validation."
-                            )
-                        },
-                        {
-                            "role": "user",
-                            "content": json.dumps(proposal_data)
-                        }
-                    ],
-                    temperature=0.2,
-                    max_completion_tokens=8192
-                )
+            response = client.chat.completions.create(
+                model="openai/gpt-oss-20b",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a research methodology reviewer. "
+                            "Evaluate the proposal critically. "
+                            "Identify strengths, limitations and "
+                            "practical recommendations. Do not invent "
+                            "evidence or claim validation."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": json.dumps(proposal_data)
+                    }
+                ],
+                temperature=0.2,
+                max_completion_tokens=8192
+            )
 
-                st.markdown(response.choices[0].message.content)
+            st.markdown(response.choices[0].message.content)
 
-                if response.choices[0].finish_reason == "length":
-                    st.warning(
-                        "The response reached its output limit. "
-                        "Please generate the review again."
-                    )
-        else:
-            try:
-                client = Groq(api_key=api_key)
+            if response.choices[0].finish_reason == "length":
+                st.warning("Response reached its output limit.")
 
-                response = client.chat.completions.create(
-                    model="openai/gpt-oss-20b",
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": (
-                                "Prioritize methodological gaps as Critical, "
-                                "Important, or Optional. Explain why each "
-                                "matters. Do not label already-defined items "
-                                "as missing. Distinguish issues requiring "
-                                "actual patient data from protocol decisions."
-                            )
-                        },
-                        {
-                            "role": "user",
-                            "content": json.dumps(proposal_data)
-                        }
-                    ],
-temperature=0.2,
-max_completion_tokens=8192
-                )
+        except Exception as e:
+            st.error(f"AI review error: {e}")
 
-                                st.markdown(response.choices[0].message.content)
 
-                if response.choices[0].finish_reason == "length":
-                    st.warning(
-                        "The response reached its output limit. "
-                        "Please generate the review again."
-                    )
+with tab3:
+    st.header("Methodological Gap Prioritization")
 
-            except Exception as e:
-                st.error(f"Prioritization error: {e}")
+    if st.button("Prioritize Research Gaps"):
+        try:
+            client = Groq(api_key=api_key)
+
+            response = client.chat.completions.create(
+                model="openai/gpt-oss-20b",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "Prioritize methodological gaps as Critical, "
+                            "Important, or Optional. Explain why each "
+                            "matters. Do not label already-defined items "
+                            "as missing. Distinguish issues requiring "
+                            "actual patient data from protocol decisions."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": json.dumps(proposal_data)
+                    }
+                ],
+                temperature=0.2,
+                max_completion_tokens=8192
+            )
+
+            st.markdown(response.choices[0].message.content)
+
+            if response.choices[0].finish_reason == "length":
+                st.warning("Response reached its output limit.")
+
+        except Exception as e:
+            st.error(f"Prioritization error: {e}")
