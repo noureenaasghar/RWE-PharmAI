@@ -19,10 +19,11 @@ st.info(
     "and do not represent validated clinical findings."
 )
 
-api_key = st.text_input(
-    "Groq API Key",
-    type="password"
-)
+api_key = st.secrets.get("GROQ_API_KEY", "")
+
+if not api_key:
+    st.error("Groq API Key is missing. Please configure it in Streamlit Secrets.")
+    st.stop()
 
 tab1, tab2, tab3 = st.tabs([
     "Research Proposal",
