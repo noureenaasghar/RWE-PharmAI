@@ -45,7 +45,7 @@ with tab2:
             try:
                 client = Groq(api_key=api_key)
 
-                response = client.chat.completions.create(
+                 response = client.chat.completions.create(
                     model="openai/gpt-oss-20b",
                     messages=[
                         {
@@ -63,26 +63,17 @@ with tab2:
                             "content": json.dumps(proposal_data)
                         }
                     ],
-              temperature=0.2,
-max_completion_tokens=8192
+                    temperature=0.2,
+                    max_completion_tokens=8192
                 )
 
-                               st.markdown(response.choices[0].message.content)
+                st.markdown(response.choices[0].message.content)
 
                 if response.choices[0].finish_reason == "length":
                     st.warning(
                         "The response reached its output limit. "
                         "Please generate the review again."
                     )
-            except Exception as e:
-                st.error(f"AI review error: {e}")
-
-with tab3:
-    st.header("Methodological Gap Prioritization")
-
-    if st.button("Prioritize Research Gaps"):
-        if not api_key:
-            st.warning("Please enter your Groq API key.")
         else:
             try:
                 client = Groq(api_key=api_key)
