@@ -66,15 +66,28 @@ with tab1:
     for item in proposal_data["Eligibility"]["Exclusion"]:
         st.markdown(f"- {item}")
 
+
     st.divider()
 
     st.subheader("Exposure and Comparator")
 
-    st.markdown("**Exposure**")
-    st.write(proposal_data["Exposure"])
+    st.markdown("**Exposure Group: GLP-1 Receptor Agonist Users**")
+    exposure = proposal_data["Exposure"]
 
-    st.markdown("**Comparator**")
-    st.write(proposal_data["Comparator"])
+    st.markdown("- **Study population:** New users of GLP-1 receptor agonists")
+    st.markdown("- **Medication evidence:** Prescription records; dispensing records, if available")
+    st.markdown("- **Index date:** First eligible medication initiation")
+    st.markdown("- **Comparator:** New users of DPP-4 inhibitors")
+    st.info("Limitation: Prescription or dispensing records do not confirm actual medication use.")
+
+    st.markdown("**Comparator Group: DPP-4 Inhibitor Users**")
+    comparator = proposal_data["Comparator"]
+
+    st.markdown(f"- **Population:** {comparator['population']}")
+    st.markdown(f"- **Medication:** {comparator['medication']}")
+    st.markdown(f"- **Design:** {comparator['design']}")
+    st.markdown(f"- **Index date:** {comparator['index_date']}")
+    st.markdown(f"- **Washout:** {comparator['washout']}")
 
     st.divider()
 
@@ -83,7 +96,7 @@ with tab1:
     for name, details in proposal_data["Primary Outcomes"].items():
         st.markdown(f"**{name.replace('_', ' ')}**")
         for key, value in details.items():
-            st.write(f"{key.replace('_', ' ').title()}: {value}")
+            st.markdown(f"- **{key.replace('_', ' ').title()}:** {value}")
 
     st.divider()
 
@@ -95,21 +108,28 @@ with tab1:
     for item in analysis["descriptive_analysis"]:
         st.markdown(f"- {item}")
 
-    st.markdown("**Primary Analysis**")
-    st.write(analysis["primary_analysis"])
+    st.markdown("**Primary Analysis: Binary Outcomes**")
+    primary = analysis["primary_analysis"]
+    st.markdown("- **Statistical method:** Modified Poisson regression with robust standard errors")
+    st.markdown("- **Effect measure:** Adjusted Risk Ratio (aRR)")
+    st.markdown("- **Uncertainty:** 95% Confidence Interval")
 
-    st.markdown("**Secondary Analysis**")
-    st.write(analysis["secondary_analysis"])
+    st.markdown("**Secondary Analysis: Recurrent Events**")
+    secondary = analysis["secondary_analysis"]
+    st.markdown("- **Statistical method:** Negative binomial regression, if overdispersion is present")
+    st.markdown("- **Effect measure:** Incidence Rate Ratio (IRR)")
+    st.markdown("- **Uncertainty:** 95% Confidence Interval")
 
     st.markdown("**Confounding Control**")
     for item in analysis["confounding_control"]:
         st.markdown(f"- {item}")
 
-    st.write("Significance level:", analysis["significance_level"])
+    st.markdown(f"**Significance level:** {analysis['significance_level']}")
 
     st.divider()
 
     st.subheader("Confounders")
+
 
     for category, variables in proposal_data["Confounders"].items():
         st.markdown(f"**{category.replace('_', ' ').title()}**")
