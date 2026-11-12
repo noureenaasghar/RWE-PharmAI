@@ -33,7 +33,98 @@ tab1, tab2, tab3 = st.tabs([
 
 with tab1:
     st.header("Research Proposal")
-    st.json(proposal_data, expanded=False)
+
+    st.title(proposal_data["Title"])
+
+    st.subheader("Research Question")
+    st.write(proposal_data["Research Question"])
+
+    st.divider()
+
+    st.subheader("Study Design")
+    st.write(proposal_data["Study Design"])
+
+    st.subheader("Target Population")
+    population = proposal_data["Target Population"]
+
+    st.write("Age:", population["age"])
+    st.write("Required conditions:", ", ".join(population["required_conditions"]))
+    st.write("Exposure group:", population["exposure_group"]["medication"])
+    st.write("Comparator group:", population["comparator_group"]["medication"])
+    st.write("Washout period:", population["washout_period"])
+    st.write("Index date:", population["index_date"])
+
+    st.divider()
+
+    st.subheader("Eligibility Criteria")
+
+    st.markdown("**Inclusion Criteria**")
+    for item in proposal_data["Eligibility"]["Inclusion"]:
+        st.markdown(f"- {item}")
+
+    st.markdown("**Exclusion Criteria**")
+    for item in proposal_data["Eligibility"]["Exclusion"]:
+        st.markdown(f"- {item}")
+
+    st.divider()
+
+    st.subheader("Exposure and Comparator")
+
+    st.markdown("**Exposure**")
+    st.write(proposal_data["Exposure"])
+
+    st.markdown("**Comparator**")
+    st.write(proposal_data["Comparator"])
+
+    st.divider()
+
+    st.subheader("Primary Outcomes")
+
+    for name, details in proposal_data["Primary Outcomes"].items():
+        st.markdown(f"**{name.replace('_', ' ')}**")
+        for key, value in details.items():
+            st.write(f"{key.replace('_', ' ').title()}: {value}")
+
+    st.divider()
+
+    st.subheader("Statistical Analysis")
+
+    analysis = proposal_data["Statistical Analysis"]
+
+    st.markdown("**Descriptive Analysis**")
+    for item in analysis["descriptive_analysis"]:
+        st.markdown(f"- {item}")
+
+    st.markdown("**Primary Analysis**")
+    st.write(analysis["primary_analysis"])
+
+    st.markdown("**Secondary Analysis**")
+    st.write(analysis["secondary_analysis"])
+
+    st.markdown("**Confounding Control**")
+    for item in analysis["confounding_control"]:
+        st.markdown(f"- {item}")
+
+    st.write("Significance level:", analysis["significance_level"])
+
+    st.divider()
+
+    st.subheader("Confounders")
+
+    for category, variables in proposal_data["Confounders"].items():
+        st.markdown(f"**{category.replace('_', ' ').title()}**")
+        st.write(", ".join(variables))
+
+    st.divider()
+
+    st.subheader("Pending Validation")
+
+    pending = proposal_data["Pending Validation"]
+
+    for category, items in pending.items():
+        st.markdown(f"**{category.replace('_', ' ').title()}**")
+        for item in items:
+            st.markdown(f"- {item}")
 
 with tab2:
     st.header("AI Research Review")
