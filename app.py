@@ -305,7 +305,16 @@ with tab3:
     "and its empirical validation. For example, a planned "
     "propensity-score analysis may be specified, while actual "
     "covariate balance remains data-dependent.\n\n"
+"19. Distinguish between ...\n\n"
 
+"20. Recognize that ...\n"
+"21. Recognize that ...\n"
+"22. Recognize that ...\n"
+"23. Recognize that ...\n"
+"24. Do not classify ...\n"
+"25. Do not list ...\n\n"
+
+"OUTPUT FORMAT:\n\n"
     "OUTPUT FORMAT:\n\n"
 
     "A. PRIORITIZED METHODOLOGICAL GAPS\n"
