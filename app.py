@@ -28,7 +28,20 @@ proposal_data["Missing Data Strategy"] = {
     "handling": "Select an appropriate method based on the amount and pattern of missing data",
     "precaution": "Do not automatically treat missing values as zero"
 }
-
+proposal_data["Secondary Outcomes"] = {
+    "recurrent_ED_visits": {
+        "definition": "Number of alcohol-related ED visits during follow-up",
+        "measurement_period": "Up to 12 months after index date",
+        "analysis": "Negative binomial regression if overdispersion is present",
+        "status": "Outcome counting rules require further specification"
+    },
+    "recurrent_hospitalizations": {
+        "definition": "Number of alcohol-related hospitalizations during follow-up",
+        "measurement_period": "Up to 12 months after index date",
+        "analysis": "Negative binomial regression if overdispersion is present",
+        "status": "Outcome counting rules require further specification"
+    }
+}
 st.title("RWE-PharmAI")
 st.subheader("AI-Assisted Real-World Evidence Research Framework")
 
