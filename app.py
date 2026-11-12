@@ -131,6 +131,35 @@ with tab1:
 
     st.divider()
 
+    st.subheader("Secondary Outcomes")
+
+    for name, details in proposal_data["Secondary Outcomes"].items():
+        st.markdown(f"**{name.replace('_', ' ').title()}**")
+        for key, value in details.items():
+            st.markdown(
+                f"- **{key.replace('_', ' ').title()}:** {value}"
+            )
+
+    st.divider()
+
+    st.subheader("Censoring Rules")
+
+    for key, value in proposal_data["Censoring Rules"].items():
+        st.markdown(
+            f"- **{key.replace('_', ' ').title()}:** {value}"
+        )
+
+    st.divider()
+
+    st.subheader("Missing Data Strategy")
+
+    for key, value in proposal_data["Missing Data Strategy"].items():
+        st.markdown(
+            f"- **{key.replace('_', ' ').title()}:** {value}"
+        )
+
+    st.divider()
+
     st.subheader("Statistical Analysis")
 
     analysis = proposal_data["Statistical Analysis"]
