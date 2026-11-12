@@ -348,8 +348,7 @@ with tab3:
     "role": "user",
     "content": json.dumps(proposal_data)
 },
-                        "content": json.dumps(proposal_data)
-                    }
+                    
                 ],
                 temperature=0.2,
                 max_completion_tokens=8192
