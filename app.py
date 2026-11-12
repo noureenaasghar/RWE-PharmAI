@@ -342,9 +342,12 @@ with tab3:
     "Use concise, evidence-based language. Be specific to this "
     "proposal. Do not create duplicate issues or generic "
     "checklists of every possible epidemiological method."
-)
-                    {
-                        "role": "user",
+    )
+},
+{
+    "role": "user",
+    "content": json.dumps(proposal_data)
+},
                         "content": json.dumps(proposal_data)
                     }
                 ],
