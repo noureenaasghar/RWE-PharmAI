@@ -117,6 +117,27 @@ with tab3:
     "Priority | Methodological Issue | Current Status | "
     "Why It Matters | Required Action | Category\n\n"
 
+                           "10. In the final summary, include only genuinely "
+"unresolved methodological decisions as unresolved gaps. "
+"Do not describe an already-specified decision as missing.\n"
+
+"11. Present validation tasks separately from missing "
+"protocol decisions. Validation requirements do not "
+"automatically constitute methodological gaps.\n"
+
+"12. Do not automatically classify every validation "
+"requirement as Critical. Assign priority according to "
+"its actual impact on study validity and feasibility.\n"
+
+"13. Do not recommend PDC, multiple imputation, "
+"zero-inflated models, or other advanced methods as "
+"mandatory. Recommend them only when the required data "
+"and methodological justification are available.\n"
+
+"14. Do not assume that the proposed 12-month washout "
+"or follow-up period is inadequate. Identify these as "
+"specified design choices requiring justification "
+"or validation where appropriate.\n"
     "End with a concise summary of genuinely unresolved "
     "critical issues."
 )
